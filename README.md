@@ -16,29 +16,40 @@ Here are some ideas to get you started:
 -->
 
 1. O que será realizado?
-Será criada uma função AWS Lambda para consumir mensagens de uma fila Amazon SQS e executar uma AWS Step Function, passando a mensagem recebida como payload para o fluxo da Step Function.
+Será realizada a otimização e atualização de uma função AWS Lambda existente. A otimização visa melhorar o desempenho e tornar o processamento mais rápido, enquanto a atualização contemplará a versão do Python e das layers utilizadas pela função.
 
 ⸻
 
 2. Qual é o objetivo?
-O objetivo é integrar a leitura de mensagens do SQS com a execução de fluxos na Step Function, permitindo que dados recebidos sejam processados de forma automatizada e orquestrada conforme a lógica definida no fluxo.
+O objetivo é modernizar e otimizar a Lambda, garantindo maior eficiência, desempenho aprimorado e compatibilidade com versões atualizadas de Python e bibliotecas, assegurando a manutenção e evolução adequada do código em produção.
 
 ⸻
 
 3. Tem algum risco?
-Não. A Lambda será implantada em um ambiente não produtivo e não está vinculada a recursos existentes em produção, eliminando riscos de impacto operacional.
-
-
+Sim. Como a Lambda em questão já está em uso em um sistema produtivo, existe risco de impacto caso ocorram falhas na atualização ou incompatibilidades com a nova versão de Python e das layers. É necessário realizar testes prévios e validações antes da implantação em produção para mitigar esses riscos.
 
 1. O que será realizado?
-Será criada uma função AWS Lambda para consumir mensagens de um tópico Kafka e encaminhá-las para um Amazon EventBridge, possibilitando que esses eventos sejam roteados para outros serviços ou fluxos de processamento dentro da AWS.
+Será realizada a atualização de uma função AWS Lambda que consome mensagens de uma fila Amazon SQS e as publica em um tópico Kafka. A atualização contemplará a versão do Python e as layers utilizadas pela Lambda.
 
 ⸻
 
 2. Qual é o objetivo?
-O objetivo é integrar eventos provenientes de um tópico Kafka ao Amazon EventBridge, permitindo seu roteamento e processamento por outros componentes da arquitetura. Isso facilita a comunicação entre sistemas externos e serviços internos da AWS, garantindo flexibilidade e escalabilidade no tratamento dos eventos.
+O objetivo é manter a Lambda atualizada e compatível com versões mais recentes de Python e de suas dependências, garantindo maior estabilidade, suporte e segurança, além de manter a função alinhada com as boas práticas de manutenção de código.
 
 ⸻
 
 3. Tem algum risco?
-Não. A Lambda será criada em um ambiente não produtivo, sem conexão com recursos existentes em produção, não oferecendo risco de impacto operacional.
+Sim. Como a Lambda já está em uso em ambiente produtivo, existe risco de impacto no funcionamento do sistema caso ocorram falhas durante a atualização ou incompatibilidades com as novas versões do Python e das layers. Para mitigar o risco, é importante realizar testes prévios em ambiente controlado antes da implantação em produção.
+
+1. O que será realizado?
+Será criada uma fila Amazon MQ para receber mensagens que serão disparadas para uma função Lambda. Além disso, será criada uma regra no Amazon EventBridge para redirecionar mensagens para uma fila Amazon SQS, que também será criada nesse processo.
+
+⸻
+
+2. Qual é o objetivo?
+O objetivo é implementar um fluxo de mensageria que permita a recepção, roteamento e processamento de mensagens, integrando MQ, EventBridge, SQS e Lambda. Essa arquitetura garante maior flexibilidade no tratamento de eventos e prepara a base para integrações futuras dentro do ambiente AWS.
+
+⸻
+
+3. Tem algum risco?
+Sim. Apesar de a fila MQ, a regra do EventBridge e o SQS serem novos recursos, a implantação será realizada dentro de uma pipeline que também provisiona peças já utilizadas em produção. Dessa forma, há risco de impacto caso ocorra alguma falha ou erro durante a execução da pipeline.
