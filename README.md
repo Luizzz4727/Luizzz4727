@@ -16,40 +16,15 @@ Here are some ideas to get you started:
 -->
 
 1. O que será realizado?
-Será realizada a otimização e atualização de uma função AWS Lambda existente. A otimização visa melhorar o desempenho e tornar o processamento mais rápido, enquanto a atualização contemplará a versão do Python e das layers utilizadas pela função.
+Será feito um ajuste em duas filas Amazon MQ, corrigindo as bindings que atualmente estão configuradas de forma incorreta.
 
 ⸻
 
 2. Qual é o objetivo?
-O objetivo é modernizar e otimizar a Lambda, garantindo maior eficiência, desempenho aprimorado e compatibilidade com versões atualizadas de Python e bibliotecas, assegurando a manutenção e evolução adequada do código em produção.
+O objetivo é corrigir a configuração das bindings das filas MQ para garantir que as mensagens sejam roteadas corretamente, assegurando o funcionamento adequado da comunicação entre os componentes que dependem dessas filas.
 
 ⸻
 
 3. Tem algum risco?
-Sim. Como a Lambda em questão já está em uso em um sistema produtivo, existe risco de impacto caso ocorram falhas na atualização ou incompatibilidades com a nova versão de Python e das layers. É necessário realizar testes prévios e validações antes da implantação em produção para mitigar esses riscos.
+Sim. Como as filas já estão em uso, a alteração nas bindings pode impactar o roteamento de mensagens em produção caso ocorra alguma falha na configuração ou aplicação da correção. É importante realizar validações cuidadosas e, se possível, aplicar os ajustes em um ambiente controlado antes da alteração em produção
 
-1. O que será realizado?
-Será realizada a atualização de uma função AWS Lambda que consome mensagens de uma fila Amazon SQS e as publica em um tópico Kafka. A atualização contemplará a versão do Python e as layers utilizadas pela Lambda.
-
-⸻
-
-2. Qual é o objetivo?
-O objetivo é manter a Lambda atualizada e compatível com versões mais recentes de Python e de suas dependências, garantindo maior estabilidade, suporte e segurança, além de manter a função alinhada com as boas práticas de manutenção de código.
-
-⸻
-
-3. Tem algum risco?
-Sim. Como a Lambda já está em uso em ambiente produtivo, existe risco de impacto no funcionamento do sistema caso ocorram falhas durante a atualização ou incompatibilidades com as novas versões do Python e das layers. Para mitigar o risco, é importante realizar testes prévios em ambiente controlado antes da implantação em produção.
-
-1. O que será realizado?
-Será criada uma fila Amazon MQ para receber mensagens que serão disparadas para uma função Lambda. Além disso, será criada uma regra no Amazon EventBridge para redirecionar mensagens para uma fila Amazon SQS, que também será criada nesse processo.
-
-⸻
-
-2. Qual é o objetivo?
-O objetivo é implementar um fluxo de mensageria que permita a recepção, roteamento e processamento de mensagens, integrando MQ, EventBridge, SQS e Lambda. Essa arquitetura garante maior flexibilidade no tratamento de eventos e prepara a base para integrações futuras dentro do ambiente AWS.
-
-⸻
-
-3. Tem algum risco?
-Sim. Apesar de a fila MQ, a regra do EventBridge e o SQS serem novos recursos, a implantação será realizada dentro de uma pipeline que também provisiona peças já utilizadas em produção. Dessa forma, há risco de impacto caso ocorra alguma falha ou erro durante a execução da pipeline.
