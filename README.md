@@ -15,16 +15,22 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-1. O que será realizado?
-Será feito um ajuste em duas filas Amazon MQ, corrigindo as bindings que atualmente estão configuradas de forma incorreta.
+Envio da mensagem da Step Function para uma nova fila SQS
 
-⸻
+Eu como analista desejo adicionar um bloco de configuração na Step Function "sf-democratizacao" para que a mesma mensagem processada também seja enviada para uma nova fila SQS.
 
-2. Qual é o objetivo?
-O objetivo é corrigir a configuração das bindings das filas MQ para garantir que as mensagens sejam roteadas corretamente, assegurando o funcionamento adequado da comunicação entre os componentes que dependem dessas filas.
 
-⸻
+Criação da fila SQS envia-kafka
 
-3. Tem algum risco?
-Sim. Como as filas já estão em uso, a alteração nas bindings pode impactar o roteamento de mensagens em produção caso ocorra alguma falha na configuração ou aplicação da correção. É importante realizar validações cuidadosas e, se possível, aplicar os ajustes em um ambiente controlado antes da alteração em produção
+Eu como analista desejo criar uma fila SQS chamada "envia-kafka" que receberá mensagens da Step Function "sf-democratizacao" e enviará para a Lambda "envia-kafka"
+
+
+Criação da Lambda envia-kafka
+
+Eu como analista desejo criar uma Lambda chamada "envia-kafka" que receba mensagens da fila SQS "envia-kafka" e envie essas mensagens para um tópico Kafka.
+
+
+Criação do tópico Kafka Avro
+
+Eu como analista desejo criar um tópico Kafka em formato Avro chamado "custodia-de-mercado-de-capitais-avro-atualizacao-emprestimo-ativos-local" para armazenar as mensagens de atualização de boletas de empréstimo de ativos, tornando-as disponíveis para futuros consumidores.
 
