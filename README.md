@@ -16,6 +16,40 @@ Here are some ideas to get you started:
 -->
 
 1. O que será realizado?
+Será criada uma função AWS Lambda chamada envia-kafka, que receberá por payload os dados referentes ao Kafka (como o apontamento e o tópico) e a mensagem que deverá ser enviada. A Lambda será genérica, permitindo o envio de mensagens para qualquer instância de Kafka.
+
+⸻
+
+2. Qual é o objetivo?
+O objetivo é disponibilizar uma Lambda genérica que facilite a integração com diferentes instâncias de Kafka, garantindo flexibilidade no envio de mensagens e padronização no processo de comunicação entre sistemas.
+
+⸻
+
+3. Tem algum risco?
+Não. A Lambda será criada em um ambiente não produtivo e não possui dependências com recursos já existentes, portanto pode ser implementada sem risco de impacto no ambiente produtivo.
+
+1. O que será realizado?
+Será criada uma implantação para ajustar o apontamento do servidor Kafka configurado em uma AWS Step Function, garantindo que o fluxo utilize o destino correto.
+
+⸻
+
+2. Qual é o objetivo?
+O objetivo é corrigir o apontamento do servidor Kafka dentro da Step Function, assegurando que as mensagens sejam direcionadas ao servidor apropriado, mantendo a integridade do fluxo de processamento.
+
+⸻
+
+3. Tem algum risco?
+Não. O ajuste será realizado em ambiente não produtivo e não possui dependência com recursos já existentes, portanto pode ser implementado sem risco de impacto no ambiente produtivo.
+
+
+
+
+
+
+
+
+
+1. O que será realizado?
 Será criada uma regra no barramento “Liquidacao” do Amazon EventBridge, chamada regra_envia_kafka. Essa regra terá a função de receber mensagens de atualização de empréstimo de ativos e direcioná-las para a fila Amazon SQS envia-Kafka-dê-para, dentro do fluxo de disponibilização sistêmica das mensagens no tópico Kafka.
 
 ⸻
